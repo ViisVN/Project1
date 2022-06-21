@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class Enemy_heath : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float hp =10;
-    void Start()
+    public SpriteRenderer sprite;
+    public GameObject corpse;
+    //Change color
+    public IEnumerator Flashred()
     {
-        
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = Color.white;
     }
-
-    // Update is called once per frame
-    void Update()
+    //Tru hp
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-             if(other.CompareTag("Bullet"))
+           if(other.CompareTag("Bullet"))
         {
             hp-=2;
+            StartCoroutine(Flashred());
         }
 
         if(hp<=0)
         {
             Destroy(gameObject);
+            Instantiate(corpse,transform.position,transform.rotation);
         }
     }
 }
