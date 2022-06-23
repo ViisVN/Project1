@@ -4,22 +4,10 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    //Player Controller
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * GetComponent<PlayerStats>().speed;
-        float y = Input.GetAxis("Vertical") * Time.deltaTime * GetComponent<PlayerStats>().speed;
-        transform.Translate(x, y, 0);
-
-
+        var movementx = Input.GetAxis("Horizontal");
+        var movementy = Input.GetAxis("Vertical");
+        transform.position += new Vector3(movementx * Time.deltaTime * GetComponent<PlayerStats>().speed, movementy * Time.deltaTime * GetComponent<PlayerStats>().speed, 0);
     }
 }

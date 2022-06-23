@@ -5,28 +5,26 @@ using UnityEngine;
 public class Healer : MonoBehaviour
 {
     public float plus = 30f;
-    public GameObject pickupEffect;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Pickup(other);
-        }
-    }
-    void Pickup(Collider2D player)
-    {
+            GameObject player = other.gameObject;
+            PlayerStats stats = player.GetComponent<PlayerStats>();
+            if (stats.health < stats.maxHealth)
+            {
+                stats.health += plus;
+                Destroy(gameObject);
+            }
+            if (stats.health >= stats.maxHealth)
+            {
+                stats.health = stats.maxHealth;
+                Destroy(gameObject);
+            }
 
-        Instantiate(pickupEffect, transform.position, transform.rotation);
-        PlayerStats stats = player.GetComponent<PlayerStats>();
-        if (stats.health + plus > stats.maxHealth)
-        {
-            stats.health = stats.maxHealth;
         }
-        else
-        {
-            stats.health += plus;
-        }
-        Destroy(gameObject);
     }
+
 }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3473798276138129630}
   - component: {fileID: 2206829768063838724}
   m_Layer: 0
-  m_Name: BulletDMG
+  m_Name: FireRate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,12 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3850978708411375486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9f355ee4fa3cb4cbd72e455a3da5bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 893e01707bd88e64ca390ac32764a08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  pickupEffect: {fileID: 1000011128802252, guid: 93e585eaaa693354595d3cbda063e2cd,
-    type: 3}
+  Bulletspeed: 5
 --- !u!58 &2206829768063838724
 CircleCollider2D:
   m_ObjectHideFlags: 0

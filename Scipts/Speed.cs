@@ -6,18 +6,16 @@ public class Speed : MonoBehaviour
 {
     public float speed = 1.5f;
     public float duration = 2f;
-    public GameObject pickupEffect;
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.tag == "Player")
         {
-            StartCoroutine(Pickup(other));
+            StartCoroutine(Pickup(collision));
         }
     }
     IEnumerator Pickup(Collider2D player)
     {
-
-        Instantiate(pickupEffect, transform.position, transform.rotation);
         PlayerStats stats = player.GetComponent<PlayerStats>();
         stats.speed += speed;
 

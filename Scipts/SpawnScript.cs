@@ -7,12 +7,26 @@ public class SpawnScript : MonoBehaviour
     public int NumberOfEnemies;
     public List<GameObject> SpawnObject;
     public GameObject Quad;
+    public float timeToSpawn;
+    private float currentTimeToSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
+
         //Instantiate(SpawnObject[Random.Range(0, SpawnObject.Length)], SpawnLocations[Random.Range(0, SpawnLocations.Length)]);
+    }
+    void Update()
+    {
+        if (currentTimeToSpawn > 0)
+        {
+            currentTimeToSpawn -= Time.deltaTime;
+        }
+        else
+        {
+            Spawn();
+            currentTimeToSpawn = timeToSpawn;
+        }
     }
     public void Spawn()
     {
